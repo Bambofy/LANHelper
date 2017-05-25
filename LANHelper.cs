@@ -19,10 +19,10 @@ namespace LANHelper
 
         private static Dictionary<string, Action> _hooks = new Dictionary<string, Action>();
 
-        public static void Init(int pMillisecondUpdate = 10, int pPort = 1337, int pLANComputerCount = 20, int pReceiveWindowSize = 262144)
+        public static void Init(int pPort = 1337, int pLANComputerCount = 20, int pReceiveWindowSize = 262144)
         {
             _port = pPort;
-            _receiveWindowSize = pReceiveWindowSize + 1024;
+            _receiveWindowSize = pReceiveWindowSize;
             _lanComputerCount = pLANComputerCount;
 
             IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Any, 1337);
@@ -167,7 +167,7 @@ namespace LANHelper
         {
             string baseIp = "192.168.0.";
             List<string> ips = new List<string>();
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < _lanComputerCount; i++)
             {
                 string ip = baseIp + i.ToString();
 
